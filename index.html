@@ -624,100 +624,159 @@
       transform: rotate(45deg);
     }
 
-    .projects-carousel-track {
-      display: flex;
+    /* TWO SQUARE PROJECT CARDS PER ROW */
+    #projects .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 28px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: thin;
-      padding: 8px 4px 24px;
+      padding: 8px 0;
+      overflow: visible;
     }
 
-    .projects-carousel-track .project-card {
+/* CARD */
+    #projects .project-card {
       display: flex;
       flex-direction: column;
-      flex: 0 0 calc((100%-28px)/2);
-      min-width: 0; 
-      scroll-snap-align: start;
+      min-width: 0;
+      aspect-ratio: 1 / 1;
+      box-sizing: border-box;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
       color: var(--ink);
-      text-decoration: none; 
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
+    #projects .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 28px #00000012;
+    }
+
+    #projects .project-card:focus-visible {
+      outline: 2px solid #111;
+      outline-offset: 4px;
+    }
+
+/* IMAGE */
     #projects .project-image {
       position: relative;
-      display: blcok;
-      height: 230px;
+      display: block;
+      flex: 0 0 40%;
+      min-height: 0;
       padding: 0;
       overflow: hidden;
-      background: #eeeeee;
+      background: #eee;
     }
 
-    .project-screenshot {
-      display: block; 
+    #projects .project-screenshot {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      transition: transform 0.35s ease; 
+      transition: transform 0.35s ease;
     }
 
-    .project-card:hover, .project-screenshot {
-      transform: scale(1.03); 
+    #projects .project-card:hover .project-screenshot {
+      transform: scale(1.03);
     }
 
-    .project-overlay {
+/* IMAGE HOVER EFFECT */
+    #projects .project-overlay {
       position: absolute;
       inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0,0,0,0.35);
+      background: rgba(0, 0, 0, 0.35);
       opacity: 0;
-      transition: opacity 0.25s ease; 
+      transition: opacity 0.25s ease;
     }
 
-    .project-card:hover .project-overlay, 
-    .project-card:focus-visible .project-overlay {
-      opacity: 1; 
+    #projects .project-card:hover .project-overlay,
+    #projects .project-card:focus-visible .project-overlay {
+      opacity: 1;
     }
 
-    .project-link {
+    #projects .project-link {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 52px;
-      height: 52px; 
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: white;
       color: black;
-      font-size: 28px;
+      font-size: 26px;
     }
 
-    .projects-carousel-track .project-content {
+/* TEXT */
+    #projects .project-content {
       display: flex;
       flex-direction: column;
       flex: 1;
-      padding: 28px;
+      min-height: 0;
+      padding: 20px;
+      overflow: hidden;
     }
 
-    .project-github-link {
+    #projects .project-content h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.3;
+      letter-spacing: -0.4px;
+    }
+
+    #projects .project-content p {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+/* Hide extra content to keep cards compact */
+    #projects .project-tags,
+    #projects .project-number,
+    #projects .project-content details {
+      display: none;
+    }
+
+/* GITHUB LINK */
+    #projects .project-github-link {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       margin-top: auto;
-      padding-top: 18px; 
-      border-top: 1px solid var(--line); 
-      font-size: 13px;
-      font-weight: 600; 
-    } 
+      padding-top: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
 
+/* PHONE */
     @media (max-width: 700px) {
-      .projects-carousel-track .project-card {
-        flex-basis: 90%;
+      #projects .projects-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: auto;
       }
 
-      #projects .project-image {
-        height: 200px; 
+      #projects .project-content {
+        padding: 16px;
+      }
+
+      #projects .project-content h3 {
+        font-size: 18px;
+      }
+
+      #projects .project-content p {
+        -webkit-line-clamp: 2;
+        font-size: 13px;
       }
     }
 
