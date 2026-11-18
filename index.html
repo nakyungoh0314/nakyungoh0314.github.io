@@ -740,10 +740,28 @@
     }
 
 /* Hide extra content to keep cards compact */
-    #projects .project-tags,
-    #projects .project-number,
-    #projects .project-content details {
+    /* Hide decorative numbers */
+    #projects .project-number {
       display: none;
+    }
+
+/* Show tags */
+    #projects .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+/* Show Project details dropdown */
+    #projects .project-content details {
+      display: block;
+      margin-top: 16px;
+    }
+
+/* Make image-area labels readable */
+    #projects .project-image {
+      color: #222;
     }
 
 /* GITHUB LINK */
@@ -778,6 +796,25 @@
         -webkit-line-clamp: 2;
         font-size: 13px;
       }
+    }
+
+    #projects .project-content p {
+      display: block;
+      -webkit-line-clamp: unset;
+      overflow: visible;
+    }
+
+    #projects .project-content {
+      overflow: visible;
+    }
+
+    #projects .project-card {
+      aspect-ratio: auto;
+    }
+
+    #projects .project-image {
+      flex: 0 0 200px;
+      height: 200px;
     }
 
     /* =========================
