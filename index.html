@@ -624,6 +624,103 @@
       transform: rotate(45deg);
     }
 
+    .projects-carousel-track {
+      display: flex;
+      gap: 28px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      padding: 8px 4px 24px;
+    }
+
+    .projects-carousel-track .project-card {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 calc((100%-28px)/2);
+      min-width: 0; 
+      scroll-snap-align: start;
+      color: var(--ink);
+      text-decoration: none; 
+    }
+
+    #projects .project-image {
+      position: relative;
+      display: blcok;
+      height: 230px;
+      padding: 0;
+      overflow: hidden;
+      background: #eeeeee;
+    }
+
+    .project-screenshot {
+      display: block; 
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.35s ease; 
+    }
+
+    .project-card:hover, .project-screenshot {
+      transform: scale(1.03); 
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      opacity: 0;
+      transition: opacity 0.25s ease; 
+    }
+
+    .project-card:hover .project-overlay, 
+    .project-card:focus-visible .project-overlay {
+      opacity: 1; 
+    }
+
+    .project-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px; 
+      border-radius: 50%;
+      background: white;
+      color: black;
+      font-size: 28px;
+    }
+
+    .projects-carousel-track .project-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 28px;
+    }
+
+    .project-github-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 18px; 
+      border-top: 1px solid var(--line); 
+      font-size: 13px;
+      font-weight: 600; 
+    } 
+
+    @media (max-width: 700px) {
+      .projects-carousel-track .project-card {
+        flex-basis: 90%;
+      }
+
+      #projects .project-image {
+        height: 200px; 
+      }
+    }
+
     /* =========================
        EXPERIENCE & EDUCATION
     ========================= */
@@ -1363,99 +1460,193 @@
       id="projects"
       class="projects"
       aria-labelledby="projects-heading"
-    >
+    > 
       <div class="container">
-        <h2 class="section-title" id="projects-heading">
-          Projects
-        </h2>
+        <h2 class="section-title" id="projects-heading">Projects</h2>
 
-        <div class="projects-grid" id="projectsCarouselTrack">
+        <div
+          class="projects-carousel"
+          aria-label="Projects carousel"
+          role="region"
+        >
+          <div
+            class="projects-grid projects-carousel-track"
+            id="projectsCarouselTrack"
+            tabindex="0"
+          >
+          <!-- PROJECT  1: Goodreads -->
+          <a
+            href="https://github.com/nakyungoh0314/DoesReadingMatter"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-image">
+              <img
+                class="project-screenshot"
+                src="Images/Reading_Matter_Image.png"
+                alt="Does Reading Matter project results"
+                loading="lazy"
+              >
 
-          <!-- PROJECT 1 -->
-          <article class="project-card">
-            <div class="project-image" aria-hidden="true">
-              <span class="project-number">01</span>
-              <span>READING &amp; LANGUAGE</span>
+              <div class="project-overlay">
+                <span class="project-link" aria-hidden="true">↗</span>
+              </div>
             </div>
 
             <div class="project-content">
-              <h3>Does Reading Matter?</h3>
+              <h3>Does Reading Matter</h3>
 
               <p>
-                Using LLMs to analyze Goodreads reviews and explore
-                how readers describe their experiences with books.
+                Used LLMs to analyze Goodreads reviews through human-defined psychological and literary categories. Evaluated agreement with human coding using accuracy and weighted F1 scores.
               </p>
 
-              <div class="project-tags">
+              <div class="project-tages">
+                <span class="tag">Python</span>
                 <span class="tag">LLMs</span>
                 <span class="tag">Text Analysis</span>
-                <span class="tag">Human Coding</span>
+                <span class="tag">Model Evaluation</span>
               </div>
 
-              <details>
-                <summary>
-                  Project details
-                  <span aria-hidden="true">+</span>
-                </summary>
-
-                <p>
-                  Applied human-defined categories to reviews and
-                  evaluated agreement between LLM-generated labels
-                  and human ratings using weighted F1 scores.
-                </p>
-              </details>
+              <span class="project-github-link">
+                View Project on GitHub 
+                <span aria-hidden="true">↗</span>
+              </span>
             </div>
-          </article>
+          </a>
 
-          <!-- PROJECT 2 -->
-          <article class="project-card">
-            <div class="project-image" aria-hidden="true">
-              <span class="project-number">02</span>
-              <span>LEARNING ANALYTICS</span>
+          <!-- PROJECT 2: Carnegie Learning --> 
+          <a
+            href="https://github.com/nakyungoh0314/Carnegie_Learning_DSHB26"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-image">
+              <img
+                class="project-screenshot"
+                src="Images/CL_image.png"
+                alt="Reading ability and mathematics performance analysis"
+                loading="lazy"
+              >
+
+              <div class="project-overlay">
+                <span class="projet-link" aria-hidden="true">↗</span>
+              </div>
             </div>
 
             <div class="project-content">
-              <h3>Reading Ability &amp; Mathematics</h3>
+              <h3>Reading Ability &amp; Mathematics Performance</h3>
 
               <p>
-                Examining how predicted reading ability relates
-                to mathematics performance across Mathstream lessons.
+                Examined the relationship between predicted reading ability and mathematics performance in Mathstream. Used mixed-effects logistic models to analyze passing, completion, and differences across lessons.
               </p>
 
               <div class="project-tags">
                 <span class="tag">R</span>
                 <span class="tag">Mixed-effects Models</span>
-                <span class="tag">Education</span>
+                <span class="tag">Learning Analytics</span>
               </div>
 
-              <details>
-                <summary>
-                  Project details
-                  <span aria-hidden="true">+</span>
-                </summary>
-
-                <p>
-                  Used mixed-effects logistic models to examine
-                  passing and completion outcomes, and explored
-                  how estimated relationships differ across lessons.
-                </p>
-              </details>
+              <span class="project-github-link">
+                View Project on GitHub 
+                <span aria-hidden="true">↗</span>
+              </span>
             </div>
-          </article>
+          </a>
 
-          <!-- PROJECT 3 -->
+          <!-- PROJECT 3: MLM26 -->
+          <a
+            href="https://github.com/nakyungoh0314/Bucky-Bookworm---Badger-Scribe-MLM-26-"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-image">
+              <img
+                class="project-screenshot"
+                src="Images/MLM26.png"
+                alt="Badger Scribe historical document transcription project"
+                loading="lazy"
+              >
+              <div class="project-overlay">
+                <span class="project-link" aria-hidden="true">↗</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <h3>Badger Scribe: Historical Text Recognition</h3>
+
+              <p>
+                A collaborative project for the 2026 Machine Learning Marathon focused on transcribing historical document images into digital text. The project explores vision-language models, including CHURRO and QWEN, with a planned workflow for comparing transcription accuracy, analyzing errors, and evaluating improvements. 
+              </p>
+
+              <div class="project-tages">
+                <span class="tag">Python</span>
+                <span class="tag">Text Recognition</span>
+                <span class="tag">Vision-Language Models</span>
+                <span class="tag">Machine Learning</span>
+              </div>
+
+              <span class="project-github-link">
+                View Project on GitHub
+                <span aria-hidden="true">↗</span>
+              </span>
+            </div>
+          </a>
+
+          <!-- PROJECT 4: Model Implementation --> 
+          <a 
+            href="https://github.com/nakyungoh0314/past_tense_model_reimplementation"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-image">
+              <img
+                class="project-screenshot"
+                src="Images/reimplementation.png"
+                alt="Past-tense learning model training error visualization"
+                loading="lazy"
+              >
+
+              <div class="project-overlay">
+                <span class="project-link" aria-hidden="true">↗</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <h3>Reimplementing a Past-Tense Learning Model</h3>
+
+              <p>
+                Reimplemented Rumelhart and McClelland's past-tense learning model in Python to explore how a neural network learns regular and irregular English verbs. Build phonological feature representation, trained a perceptron using staged exposure to verbs, and visualized learning errors across training. 
+              </p>
+
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Neural Networks</span>
+                <span class="tag">Cognitive Modeling</span>
+                <span class="tag">Language Learning</span>
+              </div>
+
+              <span class="project-github-link">
+                View Project on GitHub 
+                <span aria-hidden="true">↗</span>
+              </span>
+            </div>
+          </a>
+
+          <!-- PROJECT 5: FMRI -->
           <article class="project-card">
             <div class="project-image" aria-hidden="true">
-              <span class="project-number">03</span>
-              <span>BEHAVIORAL NEUROSCIENCE</span>
+              <span>Behavioral Neuroscience</span>
             </div>
 
             <div class="project-content">
               <h3>Decoding Emotion Regulation</h3>
 
               <p>
-                Exploring whether fMRI activity patterns distinguish
-                reappraisal from baseline conditions.
+                Exploring whether fMRI activity patterns distinguish reappraisal from baseline conditions.
               </p>
 
               <div class="project-tags">
@@ -1471,27 +1662,24 @@
                 </summary>
 
                 <p>
-                  Applied classification methods to brain activity
-                  data and collaborated on debugging and evaluating
-                  the analysis.
+                  Applied machine learning to fMRI activity patterns to distinguish reappraisal from baseline conditions. Used K-nearest neighbors classification and collaborated on debugging and evaluating the analysis. 
                 </p>
               </details>
             </div>
           </article>
 
-          <!-- PROJECT 4 -->
+          <!-- PROJECT 6: People Analytics --> 
+
           <article class="project-card">
             <div class="project-image" aria-hidden="true">
-              <span class="project-number">04</span>
-              <span>PEOPLE ANALYTICS</span>
+              <span>People Analytics</span>
             </div>
 
             <div class="project-content">
               <h3>Employee Turnover &amp; Store Sales</h3>
 
               <p>
-                Investigating the association between employee
-                turnover and business performance across 126 stores.
+                Investigating the association between employee turnover and business performance across 126 stores.
               </p>
 
               <div class="project-tags">
@@ -1507,9 +1695,7 @@
                 </summary>
 
                 <p>
-                  Examined turnover and sales while controlling for
-                  prior sales, translating model results into
-                  business-relevant interpretations.
+                  Analyzed workforce and sales data from 126 stores. Used regression to examine the association between employee turnover and sales while controlling for prior sales. 
                 </p>
               </details>
             </div>
@@ -1517,7 +1703,7 @@
 
         </div>
       </div>
-    </section>
+    </section> 
 
     <!-- EXPERIENCE -->
     <section
